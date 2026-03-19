@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-6">
+    <div class="bg-white p-10 rounded-[40px] shadow-2xl text-center w-full max-w-sm">
+        <h1 class="text-3xl font-black mb-4">Whish Pay</h1>
+        <div class="bg-blue-50 p-6 rounded-3xl mb-6">
+            <p class="text-4xl font-black text-blue-600" id="p">$0</p>
+            <p class="text-xs font-mono mt-2">ID: <span id="i">---</span></p>
+        </div>
+        <button onclick="goWA()" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-bold">WhatsApp Receipt</button>
+    </div>
+    <script>
+        const u = new URLSearchParams(window.location.search);
+        document.getElementById('p').innerText = u.get('total');
+        document.getElementById('i').innerText = u.get('id');
+        function goWA() {
+            window.location.href = `https://wa.me/96170123456?text=Payment ID: ${u.get('id')} for ${u.get('total')}`;
+        }
+    </script>
+</body>
+</html>
