@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vault Pro | Lebanon</title>
+    <title>Sneaky Sneakzzz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --ios-radius: 35px; }
@@ -18,13 +18,14 @@
         .details { display: none; }
         .expanded .details { display: block; }
         ::-webkit-scrollbar { width: 0px; }
+        select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
     </style>
 </head>
 <body>
 
     <nav class="sticky top-0 z-50 glass p-5 flex justify-between items-center">
         <button onclick="toggle('opt-p')" class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center font-bold text-xl active:bg-gray-200">•••</button>
-        <span class="font-black tracking-tighter text-2xl italic text-slate-800 uppercase">Vault</span>
+        <span class="font-black tracking-tighter text-2xl italic text-slate-800 uppercase">SNEAKZZZ</span>
         <button onclick="toggle('cart-p')" class="bg-black text-white px-6 py-2.5 rounded-full text-xs font-black shadow-xl active:opacity-80">
             Bag (<span id="count">0</span>)
         </button>
@@ -34,7 +35,7 @@
 
     <div id="opt-p" class="panel" onclick="closeP(event, 'opt-p')">
         <div class="panel-content text-center pb-14 space-y-4">
-            <h3 class="font-black text-2xl mb-4 italic">Vault Socials</h3>
+            <h3 class="font-black text-2xl mb-4 italic">Socials</h3>
             <a id="ig" href="#" target="_blank" class="block p-5 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-2xl font-black">Instagram</a>
             <a id="tk" href="#" target="_blank" class="block p-5 bg-black text-white rounded-2xl font-black">TikTok</a>
             <a id="wa-link" href="#" target="_blank" class="block p-5 bg-green-500 text-white rounded-2xl font-black">WhatsApp Us</a>
@@ -44,31 +45,40 @@
     <div id="cart-p" class="panel" onclick="closeP(event, 'cart-p')">
         <div class="panel-content space-y-5">
             <h2 class="text-3xl font-black mb-2">My Bag</h2>
-            <div id="items" class="space-y-2"></div>
-            <div class="space-y-3">
+            
+            <div id="items" class="space-y-3"></div>
+            
+            <div class="space-y-3 pt-2">
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Delivery Address</p>
                 <div class="grid grid-cols-2 gap-2">
-                    <input id="city" placeholder="City" class="p-4 bg-gray-100 rounded-2xl outline-none border-0">
-                    <input id="dist" placeholder="District" class="p-4 bg-gray-100 rounded-2xl outline-none border-0">
+                    <input id="city" placeholder="City" class="p-4 bg-gray-100 rounded-2xl outline-none">
+                    <input id="dist" placeholder="District" class="p-4 bg-gray-100 rounded-2xl outline-none">
                 </div>
-                <input id="bld" placeholder="Building / Floor / Apartment" class="w-full p-4 bg-gray-100 rounded-2xl outline-none border-0">
-                <input id="ph" type="tel" placeholder="WhatsApp Number" class="w-full p-4 bg-gray-100 rounded-2xl outline-none border-0">
-                <select id="pay" class="w-full p-4 bg-gray-100 rounded-2xl font-bold appearance-none">
-                    <option value="Cash on Delivery">Cash on Delivery</option>
-                    <option value="Whish Pay">Whish Pay</option>
-                </select>
+                <input id="bld" placeholder="Building / Floor / Apartment" class="w-full p-4 bg-gray-100 rounded-2xl outline-none">
+                <input id="ph" type="tel" placeholder="WhatsApp Number" class="w-full p-4 bg-gray-100 rounded-2xl outline-none">
+                
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-2">Choose Payment Method</p>
+                <div class="relative">
+                    <select id="pay" class="w-full p-5 bg-blue-50 border-2 border-blue-200 rounded-2xl font-black text-blue-700 appearance-none outline-none">
+                        <option value="Cash on Delivery">💵 Cash on Delivery</option>
+                        <option value="Whish Pay">📲 Whish Pay (Send Receipt)</option>
+                    </select>
+                </div>
             </div>
-            <div class="p-6 bg-slate-900 text-white rounded-[32px] flex justify-between items-center">
+
+            <div class="p-6 bg-slate-900 text-white rounded-[32px] flex justify-between items-center shadow-2xl">
                 <span class="font-bold text-gray-400 text-xs uppercase tracking-widest">Total Bill</span>
                 <span id="total" class="font-black text-2xl">$0</span>
             </div>
-            <button onclick="checkout()" class="w-full bg-blue-600 text-white p-5 rounded-[30px] font-black text-xl shadow-xl active:bg-blue-700 transition mb-6">Confirm Order</button>
+            
+            <button onclick="checkout()" class="w-full bg-blue-600 text-white p-5 rounded-[30px] font-black text-xl shadow-xl active:bg-blue-700 transition mb-6 uppercase">Confirm Order</button>
         </div>
     </div>
 
     <div id="adm-p" class="panel">
         <div class="panel-content">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-black text-red-600 italic">ADMIN PANEL</h2>
+                <h2 class="text-2xl font-black text-red-600 italic uppercase">Admin Control</h2>
                 <button onclick="toggle('adm-p')" class="bg-gray-100 px-4 py-2 rounded-full font-bold text-xs">CLOSE</button>
             </div>
             <div class="space-y-4 border-b pb-6 mb-6">
@@ -82,8 +92,9 @@
                 <input id="a-ig" placeholder="Instagram URL" class="border p-4 rounded-2xl w-full">
                 <input id="a-tk" placeholder="TikTok URL" class="border p-4 rounded-2xl w-full">
                 <input id="a-wa" placeholder="Your WhatsApp (961...)" class="border p-4 rounded-2xl w-full">
-                <button onclick="saveSet()" class="w-full bg-black text-white p-4 rounded-2xl font-bold">Save Config</button>
+                <button onclick="saveSet()" class="w-full bg-black text-white p-4 rounded-2xl font-bold">Update Config</button>
             </div>
+            <h3 class="font-black text-xl mb-4 italic">Recent Orders</h3>
             <div id="log" class="space-y-4 pb-20"></div>
         </div>
     </div>
@@ -105,7 +116,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        window.shoes = []; window.orders = []; window.cfg = {fee:5, ig:'#', tk:'#', wa:'96171000000'}; let cart = [];
+        window.shoes = []; window.orders = []; window.cfg = {fee:5, ig:'#', tk:'#', wa:'961'}; let cart = [];
 
         onValue(ref(db, 'shoes'), (snap) => { window.shoes = snap.val() ? Object.values(snap.val()) : []; drawProducts(); });
         onValue(ref(db, 'orders'), (snap) => { window.orders = snap.val() ? Object.values(snap.val()).reverse() : []; drawLog(); });
@@ -126,7 +137,7 @@
                     <img src="${s.img}" class="w-full h-40 object-cover rounded-[25px] mb-3 bg-gray-50">
                     <p class="text-[12px] font-bold text-slate-800 truncate px-1">${s.name}</p>
                     <p class="text-blue-600 font-black text-base px-1 mb-3">$${s.price}</p>
-                    <button onclick="addToBag(${s.id})" class="mt-auto bg-slate-100 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest active:bg-slate-200">Add to Bag</button>
+                    <button onclick="addToBag(${s.id})" class="mt-auto bg-slate-100 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest active:bg-slate-200 transition">Add to Bag</button>
                     ${document.getElementById('adm-p').classList.contains('active') ? `<button onclick="delShoe(${s.id})" class="text-[9px] text-red-500 mt-3 font-bold uppercase underline">Delete</button>` : ''}
                 </div>
             `).join('');
@@ -139,18 +150,35 @@
             updateCart();
         };
 
+        window.removeFromBag = (id) => {
+            let idx = cart.findIndex(x => x.id === id);
+            if (idx > -1) {
+                if(cart[idx].q > 1) { cart[idx].q--; } 
+                else { cart.splice(idx, 1); }
+            }
+            updateCart();
+        };
+
         function updateCart() {
             document.getElementById('count').innerText = cart.reduce((a,b)=>a+b.q,0);
             let sub = cart.reduce((a,b)=>a+(Number(b.price)*b.q),0);
             document.getElementById('total').innerText = `$${sub + Number(window.cfg.fee)}`;
-            document.getElementById('items').innerHTML = cart.map(i => `<div class="p-4 bg-gray-50 rounded-2xl font-bold text-sm flex justify-between"><span>${i.name}</span><span>${i.q}x</span></div>`).join('');
+            document.getElementById('items').innerHTML = cart.map(i => `
+                <div class="p-4 bg-gray-50 rounded-2xl font-bold text-sm flex justify-between items-center">
+                    <div>
+                        <p class="text-slate-900">${i.name}</p>
+                        <p class="text-blue-600 text-xs">${i.q}x — $${i.price}</p>
+                    </div>
+                    <button onclick="removeFromBag(${i.id})" class="bg-red-50 text-red-500 px-3 py-1 rounded-lg text-[10px] uppercase font-black">Remove</button>
+                </div>
+            `).join('');
         }
 
         window.checkout = () => {
             let ph = document.getElementById('ph').value;
             let method = document.getElementById('pay').value;
             let totalVal = document.getElementById('total').innerText;
-            if(!ph || cart.length === 0) return alert("Missing info!");
+            if(!ph || cart.length === 0) return alert("Please fill items and phone!");
             
             let tid = "ORD-" + Math.floor(Math.random()*8999+1000);
             let order = { 
@@ -162,13 +190,11 @@
 
             set(push(ref(db, 'orders')), order).then(() => {
                 if (method === "Whish Pay") {
-                    // THE ULTIMATE IPHONE FIX: Uses api.whatsapp.com with full URI encoding
                     let cleanPhone = window.cfg.wa.toString().replace(/\D/g, ''); 
-                    let text = `Vault Order: ${tid}\nTotal: ${totalVal}\nWhish Receipt Coming...`;
-                    let finalUrl = "https://api.whatsapp.com/send?phone=" + cleanPhone + "&text=" + encodeURIComponent(text);
-                    window.location.href = finalUrl;
+                    let text = `Vault Order: ${tid}\nTotal: ${totalVal}\nI am sending the receipt now.`;
+                    window.location.href = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(text)}`;
                 } else {
-                    alert("Order Confirmed!");
+                    alert("Order Confirmed! Check WhatsApp.");
                 }
                 cart = []; updateCart(); toggle('cart-p');
             });
@@ -216,11 +242,11 @@
                 <div class="bg-gray-50 p-5 rounded-[30px] shadow-sm mb-3" onclick="this.classList.toggle('expanded')">
                     <div class="flex justify-between font-black text-sm"><span>#${o.id}</span><span class="text-blue-600">${o.total}</span></div>
                     <div class="details text-[11px] mt-4 border-t pt-4 space-y-2">
-                        <p>👟 <b>Cart:</b> ${o.items}</p>
-                        <p>📞 <b>Phone:</b> ${o.ph}</p>
+                        <p>👟 <b>Items:</b> ${o.items}</p>
+                        <p>📞 <b>Customer:</b> ${o.ph}</p>
                         <p>📍 <b>Address:</b> ${o.loc}, ${o.bld}</p>
                         <p>💳 <b>Method:</b> ${o.pay}</p>
-                        <a href="https://api.whatsapp.com/send?phone=961${o.ph.replace(/^0+/, '')}" target="_blank" class="inline-block mt-3 bg-green-500 text-white px-5 py-2 rounded-full font-black uppercase text-[9px]">Chat</a>
+                        <a href="https://api.whatsapp.com/send?phone=961${o.ph.replace(/^0+/, '')}" target="_blank" class="inline-block mt-3 bg-green-500 text-white px-5 py-2 rounded-full font-black uppercase text-[9px]">WhatsApp Chat</a>
                     </div>
                 </div>
             `).join('');
