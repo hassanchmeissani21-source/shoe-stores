@@ -194,7 +194,7 @@
                     let text = `Vault Order: ${tid}\nTotal: ${totalVal}\nI am sending the receipt now.`;
                     window.location.href = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(text)}`;
                 } else {
-                    alert("Order Confirmed! Check WhatsApp.");
+                    alert("Order Confirmed!");
                 }
                 cart = []; updateCart(); toggle('cart-p');
             });
