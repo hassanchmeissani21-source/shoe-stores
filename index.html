@@ -321,7 +321,7 @@
         };
 
         function drawAdminInventory() {
-            document.getElementById('admin-inventory').innerHTML = products.map(p => `<div class="flex items-center justify-between p-2 bg-gray-50 mb-1 rounded-lg text-[10px] font-bold"><span>${p.name}</span><div class="flex gap-2"><select onchange="updateStatus('${p.fbKey}', this.value)" class="border rounded px-1"><option value="available" ${p.status === 'available' ? 'selected' : ''}>LIVE</option><option value="soldout" ${p.status === 'soldout' ? 'selected' : ''}>SOLD</option><option value="soon" ${p.status === 'soon' ? 'selected' : ''}>SOON</option></select><button onclick="delItem('${p.fbKey}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></div></div>`).join('');
+            document.getElementById('admin-inventory').innerHTML = products.map(p => `<div class="flex items-center justify-between p-2 bg-gray-50 mb-1 rounded-lg text-[10px] font-bold"><span>${p.name}</span><div class="flex gap-2"><select onchange="updateStatus('${p.fbKey}', this.value)" class="border rounded px-1"><option value="available" ${p.status === 'available' ? 'selected' : ''}>LIVE</option><option value="soldout" ${p.status === 'soldout' ? 'selected' : ''}>SOLD OUT</option><option value="soon" ${p.status === 'soon' ? 'selected' : ''}>SOON</option></select><button onclick="delItem('${p.fbKey}')" class="text-red-500"><i class="fa-solid fa-trash"></i></button></div></div>`).join('');
         }
 
         window.updateStatus = (k, v) => update(ref(db, 'sneaks_items/' + k), { status: v });
