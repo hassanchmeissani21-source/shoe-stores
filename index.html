@@ -4,29 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sneaky Sneakzzz</title>
+    <title>Sneaky Sneaks | Lebanon</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --ios-radius: 35px; }
         body { background: #f2f2f7; font-family: -apple-system, BlinkMacSystemFont, sans-serif; overflow-x: hidden; }
         .glass { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .ios-card { border-radius: var(--ios-radius); transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); background: white; height: 100%; display: flex; flex-direction: column; }
-        .ios-card:active { transform: scale(0.96); }
+        .ios-card { border-radius: var(--ios-radius); transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); background: white; height: 100%; display: flex; flex-direction: column; position: relative; }
         .panel { position: fixed; inset: 0; z-index: 100; display: none; align-items: flex-end; background: rgba(0,0,0,0.3); }
         .panel.active { display: flex; }
         .panel-content { width: 100%; background: white; border-radius: 40px 40px 0 0; padding: 30px; max-height: 92vh; overflow-y: auto; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
         .details { display: none; }
         .expanded .details { display: block; }
-        ::-webkit-scrollbar { width: 0px; }
-        select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
+        .sold-out { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
+        .badge { position: absolute; top: 10px; right: 10px; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 900; text-transform: uppercase; z-index: 10; }
     </style>
 </head>
 <body>
 
     <nav class="sticky top-0 z-50 glass p-5 flex justify-between items-center">
-        <button onclick="toggle('opt-p')" class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center font-bold text-xl active:bg-gray-200">•••</button>
-        <span class="font-black tracking-tighter text-2xl italic text-slate-800 uppercase">SNEAKZZZ</span>
-        <button onclick="toggle('cart-p')" class="bg-black text-white px-6 py-2.5 rounded-full text-xs font-black shadow-xl active:opacity-80">
+        <button onclick="toggle('opt-p')" class="w-11 h-11 bg-gray-100 rounded-full flex items-center justify-center font-bold text-xl">•••</button>
+        <span class="font-black tracking-tighter text-2xl italic text-slate-800 uppercase">Sneaks</span>
+        <button onclick="toggle('cart-p')" class="bg-black text-white px-6 py-2.5 rounded-full text-xs font-black shadow-xl">
             Bag (<span id="count">0</span>)
         </button>
     </nav>
@@ -45,63 +44,70 @@
     <div id="cart-p" class="panel" onclick="closeP(event, 'cart-p')">
         <div class="panel-content space-y-5">
             <h2 class="text-3xl font-black mb-2">My Bag</h2>
-            
             <div id="items" class="space-y-3"></div>
             
             <div class="space-y-3 pt-2">
                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Delivery Address</p>
                 <div class="grid grid-cols-2 gap-2">
-                    <input id="city" placeholder="City" class="p-4 bg-gray-100 rounded-2xl outline-none">
-                    <input id="dist" placeholder="District" class="p-4 bg-gray-100 rounded-2xl outline-none">
+                    <input id="city" placeholder="City" class="p-4 bg-gray-100 rounded-2xl outline-none border-0">
+                    <input id="dist" placeholder="District" class="p-4 bg-gray-100 rounded-2xl outline-none border-0">
                 </div>
-                <input id="bld" placeholder="Building / Floor / Apartment" class="w-full p-4 bg-gray-100 rounded-2xl outline-none">
-                <input id="ph" type="tel" placeholder="WhatsApp Number" class="w-full p-4 bg-gray-100 rounded-2xl outline-none">
+                <input id="bld" placeholder="Building / Floor / Apt" class="w-full p-4 bg-gray-100 rounded-2xl outline-none border-0">
+                <input id="ph" type="tel" placeholder="WhatsApp Number" class="w-full p-4 bg-gray-100 rounded-2xl outline-none border-0">
                 
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-2">Choose Payment Method</p>
-                <div class="relative">
-                    <select id="pay" class="w-full p-5 bg-blue-50 border-2 border-blue-200 rounded-2xl font-black text-blue-700 appearance-none outline-none">
-                        <option value="Cash on Delivery">💵 Cash on Delivery</option>
-                        <option value="Whish Pay">📲 Whish Pay (Send Receipt)</option>
-                    </select>
-                </div>
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-2">Payment Method</p>
+                <select id="pay" class="w-full p-5 bg-blue-50 border-2 border-blue-200 rounded-2xl font-black text-blue-700 outline-none">
+                    <option value="Cash on Delivery">💵 Cash on Delivery</option>
+                    <option value="Whish Pay">📲 Whish Pay (Send Receipt)</option>
+                </select>
             </div>
 
-            <div class="p-6 bg-slate-900 text-white rounded-[32px] flex justify-between items-center shadow-2xl">
+            <div class="p-6 bg-slate-900 text-white rounded-[32px] flex justify-between items-center">
                 <span class="font-bold text-gray-400 text-xs uppercase tracking-widest">Total Bill</span>
                 <span id="total" class="font-black text-2xl">$0</span>
             </div>
             
-            <button onclick="checkout()" class="w-full bg-blue-600 text-white p-5 rounded-[30px] font-black text-xl shadow-xl active:bg-blue-700 transition mb-6 uppercase">Confirm Order</button>
+            <button onclick="checkout()" class="w-full bg-blue-600 text-white p-5 rounded-[30px] font-black text-xl shadow-xl uppercase">Confirm Order</button>
         </div>
     </div>
 
     <div id="adm-p" class="panel">
         <div class="panel-content">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-black text-red-600 italic uppercase">Admin Control</h2>
+                <h2 class="text-2xl font-black text-red-600 italic uppercase">Sneaks Control</h2>
                 <button onclick="toggle('adm-p')" class="bg-gray-100 px-4 py-2 rounded-full font-bold text-xs">CLOSE</button>
             </div>
+
             <div class="space-y-4 border-b pb-6 mb-6">
+                <p class="font-black text-xs text-gray-400 uppercase">Add Inventory</p>
                 <input id="n-name" placeholder="Shoe Name" class="w-full border p-4 rounded-2xl outline-none">
                 <input id="n-price" type="number" placeholder="Price ($)" class="w-full border p-4 rounded-2xl outline-none">
                 <input id="n-img" placeholder="Image URL" class="w-full border p-4 rounded-2xl outline-none">
                 <button onclick="addProd()" class="w-full bg-green-500 text-white p-4 rounded-2xl font-bold">Add Product</button>
             </div>
+
+            <div class="mb-6">
+                <p class="font-black text-xs text-gray-400 uppercase mb-4">Live Inventory Management</p>
+                <div id="admin-inventory" class="grid grid-cols-1 gap-3"></div>
+            </div>
+
             <div class="space-y-4 border-b pb-6 mb-6">
+                <p class="font-black text-xs text-gray-400 uppercase">Store Config</p>
                 <input id="a-fee" placeholder="Delivery Fee ($)" class="border p-4 rounded-2xl w-full">
                 <input id="a-ig" placeholder="Instagram URL" class="border p-4 rounded-2xl w-full">
                 <input id="a-tk" placeholder="TikTok URL" class="border p-4 rounded-2xl w-full">
                 <input id="a-wa" placeholder="Your WhatsApp (961...)" class="border p-4 rounded-2xl w-full">
-                <button onclick="saveSet()" class="w-full bg-black text-white p-4 rounded-2xl font-bold">Update Config</button>
+                <button onclick="saveSet()" class="w-full bg-black text-white p-4 rounded-2xl font-bold">Save Config</button>
             </div>
-            <h3 class="font-black text-xl mb-4 italic">Recent Orders</h3>
+
+            <h3 class="font-black text-xl mb-4 italic">Customer Orders</h3>
             <div id="log" class="space-y-4 pb-20"></div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, set, onValue, push, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getDatabase, ref, set, onValue, push, remove, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBtmroTGfgqw5Lt2MkThD4dqE-ZHnOye1U",
@@ -118,7 +124,12 @@
 
         window.shoes = []; window.orders = []; window.cfg = {fee:5, ig:'#', tk:'#', wa:'961'}; let cart = [];
 
-        onValue(ref(db, 'shoes'), (snap) => { window.shoes = snap.val() ? Object.values(snap.val()) : []; drawProducts(); });
+        onValue(ref(db, 'shoes'), (snap) => { 
+            const data = snap.val();
+            window.shoes = data ? Object.entries(data).map(([key, val]) => ({...val, fbKey: key})) : []; 
+            drawProducts(); 
+            drawAdminInventory();
+        });
         onValue(ref(db, 'orders'), (snap) => { window.orders = snap.val() ? Object.values(snap.val()).reverse() : []; drawLog(); });
         onValue(ref(db, 'config'), (snap) => { if(snap.val()) window.cfg = snap.val(); updateUI(); });
 
@@ -132,19 +143,54 @@
 
         function drawProducts() {
             const grid = document.getElementById('grid');
-            grid.innerHTML = window.shoes.map(s => `
-                <div class="ios-card p-3 shadow-sm border border-gray-50 flex flex-col">
+            grid.innerHTML = window.shoes.map(s => {
+                const status = s.status || 'available';
+                let badge = '';
+                let style = '';
+                if(status === 'soldout') { badge = '<span class="badge bg-red-600 text-white">Sold Out</span>'; style = 'sold-out'; }
+                if(status === 'soon') { badge = '<span class="badge bg-blue-600 text-white">Coming Soon</span>'; style = 'sold-out'; }
+
+                return `
+                <div class="ios-card p-3 shadow-sm border border-gray-50 flex flex-col ${style}">
+                    ${badge}
                     <img src="${s.img}" class="w-full h-40 object-cover rounded-[25px] mb-3 bg-gray-50">
                     <p class="text-[12px] font-bold text-slate-800 truncate px-1">${s.name}</p>
                     <p class="text-blue-600 font-black text-base px-1 mb-3">$${s.price}</p>
-                    <button onclick="addToBag(${s.id})" class="mt-auto bg-slate-100 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest active:bg-slate-200 transition">Add to Bag</button>
-                    ${document.getElementById('adm-p').classList.contains('active') ? `<button onclick="delShoe(${s.id})" class="text-[9px] text-red-500 mt-3 font-bold uppercase underline">Delete</button>` : ''}
+                    <button onclick="addToBag(${s.id})" class="mt-auto bg-slate-100 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest">Add to Bag</button>
+                </div>`;
+            }).join('');
+        }
+
+        function drawAdminInventory() {
+            const list = document.getElementById('admin-inventory');
+            list.innerHTML = window.shoes.map(s => `
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-2xl border">
+                    <div class="flex items-center gap-3">
+                        <img src="${s.img}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <p class="font-bold text-xs">${s.name}</p>
+                            <p class="text-[10px] text-gray-500">$${s.price}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <select onchange="updateStatus('${s.fbKey}', this.value)" class="text-[10px] p-2 rounded-lg border bg-white font-bold">
+                            <option value="available" ${s.status === 'available' ? 'selected' : ''}>Active</option>
+                            <option value="soldout" ${s.status === 'soldout' ? 'selected' : ''}>Sold Out</option>
+                            <option value="soon" ${s.status === 'soon' ? 'selected' : ''}>Coming Soon</option>
+                        </select>
+                        <button onclick="delShoe('${s.fbKey}')" class="bg-red-100 text-red-600 p-2 rounded-lg font-black text-[10px]">X</button>
+                    </div>
                 </div>
             `).join('');
         }
 
+        window.updateStatus = (key, val) => {
+            update(ref(db, 'shoes/' + key), { status: val });
+        };
+
         window.addToBag = (id) => {
             let s = window.shoes.find(x => x.id === id);
+            if(s.status && s.status !== 'available') return;
             let ex = cart.find(x => x.id === id);
             ex ? ex.q++ : cart.push({...s, q:1});
             updateCart();
@@ -152,10 +198,7 @@
 
         window.removeFromBag = (id) => {
             let idx = cart.findIndex(x => x.id === id);
-            if (idx > -1) {
-                if(cart[idx].q > 1) { cart[idx].q--; } 
-                else { cart.splice(idx, 1); }
-            }
+            if (idx > -1) { if(cart[idx].q > 1) cart[idx].q--; else cart.splice(idx, 1); }
             updateCart();
         };
 
@@ -165,20 +208,16 @@
             document.getElementById('total').innerText = `$${sub + Number(window.cfg.fee)}`;
             document.getElementById('items').innerHTML = cart.map(i => `
                 <div class="p-4 bg-gray-50 rounded-2xl font-bold text-sm flex justify-between items-center">
-                    <div>
-                        <p class="text-slate-900">${i.name}</p>
-                        <p class="text-blue-600 text-xs">${i.q}x — $${i.price}</p>
-                    </div>
-                    <button onclick="removeFromBag(${i.id})" class="bg-red-50 text-red-500 px-3 py-1 rounded-lg text-[10px] uppercase font-black">Remove</button>
-                </div>
-            `).join('');
+                    <div><p>${i.name}</p><p class="text-blue-600 text-xs">${i.q}x — $${i.price}</p></div>
+                    <button onclick="removeFromBag(${i.id})" class="text-red-500 font-black text-[10px] uppercase">Remove</button>
+                </div>`).join('');
         }
 
         window.checkout = () => {
             let ph = document.getElementById('ph').value;
             let method = document.getElementById('pay').value;
             let totalVal = document.getElementById('total').innerText;
-            if(!ph || cart.length === 0) return alert("Please fill items and phone!");
+            if(!ph || cart.length === 0) return alert("Fill items and phone!");
             
             let tid = "ORD-" + Math.floor(Math.random()*8999+1000);
             let order = { 
@@ -191,42 +230,34 @@
             set(push(ref(db, 'orders')), order).then(() => {
                 if (method === "Whish Pay") {
                     let cleanPhone = window.cfg.wa.toString().replace(/\D/g, ''); 
-                    let text = `Vault Order: ${tid}\nTotal: ${totalVal}\nI am sending the receipt now.`;
+                    let text = `Sneaky Sneaks Order: ${tid}\nTotal: ${totalVal}\nI'm sending the receipt now.`;
                     window.location.href = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(text)}`;
-                } else {
-                    alert("Order Confirmed!");
-                }
+                } else { alert("Order Confirmed!"); }
                 cart = []; updateCart(); toggle('cart-p');
             });
         };
 
-        window.toggle = (id) => { document.getElementById(id).classList.toggle('active'); if(id === 'adm-p') drawProducts(); };
+        window.toggle = (id) => { document.getElementById(id).classList.toggle('active'); };
         window.closeP = (e, id) => { if(e.target.id === id) toggle(id); };
 
         let keys = {};
         window.onkeydown = (e) => {
             keys[e.key] = true;
             if(keys['Shift'] && keys['G'] && keys['H']) {
-                if(prompt("Vault Key:") === "admin123") {
-                    document.getElementById('a-fee').value = window.cfg.fee;
-                    document.getElementById('a-ig').value = window.cfg.ig;
-                    document.getElementById('a-tk').value = window.cfg.tk;
-                    document.getElementById('a-wa').value = window.cfg.wa;
-                    toggle('adm-p');
-                }
+                if(prompt("Vault Key:") === "admin123") toggle('adm-p');
                 keys = {};
             }
         };
-        window.onkeyup = (e) => keys[e.key] = false;
 
         window.addProd = () => {
             let n = document.getElementById('n-name').value;
             let p = document.getElementById('n-price').value;
             let i = document.getElementById('n-img').value;
-            set(ref(db, 'shoes/' + Date.now()), { id: Date.now(), name: n, price: p, img: i }).then(() => alert("Live!"));
+            if(!n || !p || !i) return alert("Fill all fields");
+            set(push(ref(db, 'shoes')), { id: Date.now(), name: n, price: p, img: i, status: 'available' }).then(() => alert("Live!"));
         };
 
-        window.delShoe = (id) => { if(confirm("Delete?")) remove(ref(db, 'shoes/' + id)); };
+        window.delShoe = (key) => { if(confirm("Delete item forever?")) remove(ref(db, 'shoes/' + key)); };
         
         window.saveSet = () => {
             set(ref(db, 'config'), { 
@@ -234,22 +265,21 @@
                 ig: document.getElementById('a-ig').value, 
                 tk: document.getElementById('a-tk').value,
                 wa: document.getElementById('a-wa').value
-            }).then(() => alert("Saved!"));
+            }).then(() => alert("Config Saved!"));
         };
 
         window.drawLog = () => {
             document.getElementById('log').innerHTML = window.orders.map(o => `
                 <div class="bg-gray-50 p-5 rounded-[30px] shadow-sm mb-3" onclick="this.classList.toggle('expanded')">
                     <div class="flex justify-between font-black text-sm"><span>#${o.id}</span><span class="text-blue-600">${o.total}</span></div>
-                    <div class="details text-[11px] mt-4 border-t pt-4 space-y-2">
+                    <div class="details text-[11px] mt-4 border-t pt-4 space-y-2 text-slate-600">
                         <p>👟 <b>Items:</b> ${o.items}</p>
-                        <p>📞 <b>Customer:</b> ${o.ph}</p>
+                        <p>📞 <b>Phone:</b> ${o.ph}</p>
                         <p>📍 <b>Address:</b> ${o.loc}, ${o.bld}</p>
-                        <p>💳 <b>Method:</b> ${o.pay}</p>
-                        <a href="https://api.whatsapp.com/send?phone=961${o.ph.replace(/^0+/, '')}" target="_blank" class="inline-block mt-3 bg-green-500 text-white px-5 py-2 rounded-full font-black uppercase text-[9px]">WhatsApp Chat</a>
+                        <p>💳 <b>Payment:</b> ${o.pay}</p>
+                        <a href="https://api.whatsapp.com/send?phone=961${o.ph.replace(/^0+/, '')}" target="_blank" class="inline-block mt-3 bg-green-500 text-white px-5 py-2 rounded-full font-black uppercase text-[9px]">WhatsApp Customer</a>
                     </div>
-                </div>
-            `).join('');
+                </div>`).join('');
         };
     </script>
 </body>
