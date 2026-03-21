@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sneaky Sneaks | Official 2026</title>
+    <title>Sneaky Sneaks | Lebanon 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -15,7 +15,7 @@
         .product-card { min-width: 170px; flex: 0 0 auto; position: relative; }
         .panel { position: fixed; inset: 0; z-index: 100; display: none; align-items: flex-end; background: rgba(0,0,0,0.4); }
         .panel.active { display: flex; }
-        .panel-content { width: 100%; background: white; border-radius: 30px 30px 0 0; padding: 25px; max-height: 94vh; overflow-y: auto; }
+        .panel-content { width: 100%; background: white; border-radius: 35px 35px 0 0; padding: 25px; max-height: 94vh; overflow-y: auto; }
         .status-badge { position: absolute; top: 8px; right: 8px; padding: 4px 8px; border-radius: 8px; font-size: 8px; font-weight: 900; text-transform: uppercase; z-index: 5; }
         .item-disabled { opacity: 0.4; filter: grayscale(1); pointer-events: none; }
         #view-all-overlay { display: none; z-index: 80; position: fixed; inset: 0; background: white; overflow-y: auto; padding-top: 70px; }
@@ -55,7 +55,11 @@
 
     <div id="search-p" class="panel" onclick="closeP(event, 'search-p')">
         <div class="panel-content" style="height: 85vh;">
-            <input type="text" id="search-in" oninput="runSearch()" placeholder="Search shoes, clothes..." class="w-full p-4 bg-gray-100 rounded-2xl outline-none mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="search-head" class="font-black italic uppercase text-gray-400 text-sm">Searching Men's...</h2>
+                <button onclick="toggle('search-p')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <input type="text" id="search-in" oninput="runSearch()" placeholder="Search brand or model..." class="w-full p-4 bg-gray-100 rounded-2xl outline-none mb-6">
             <div id="search-results" class="grid grid-cols-2 gap-4 pb-12"></div>
         </div>
     </div>
@@ -64,8 +68,8 @@
         <section class="hero">
             <div class="bg-black/20 w-full h-full flex flex-col items-center justify-center text-center">
                 <h1 class="text-5xl font-black italic uppercase tracking-tighter">Sneaky Sneaks</h1>
-                <p class="font-bold text-[10px] tracking-[0.3em] mt-2 mb-6">LEBANON EXCLUSIVE</p>
-                <button onclick="document.getElementById('shop-start').scrollIntoView({behavior:'smooth'})" class="bg-white text-black px-12 py-3 rounded-full font-black uppercase text-xs">Shop</button>
+                <p class="font-bold text-[10px] tracking-[0.3em] mt-2 mb-6">PREMIUM SELECTION</p>
+                <button onclick="document.getElementById('shop-start').scrollIntoView({behavior:'smooth'})" class="bg-white text-black px-12 py-3 rounded-full font-black uppercase text-xs">Explore Shop</button>
             </div>
         </section>
 
@@ -81,11 +85,11 @@
         <div class="panel-content space-y-6 pb-12">
             <h2 id="menu-title" class="text-2xl font-black italic uppercase">MEN'S MENU</h2>
             <div id="menu-categories" class="space-y-4"></div>
-            <hr>
+            <hr class="opacity-10">
             <div class="space-y-4">
                 <a id="side-ig" href="#" target="_blank" class="flex items-center gap-3 font-bold"><i class="fa-brands fa-instagram text-xl"></i> Instagram</a>
                 <a id="side-tk" href="#" target="_blank" class="flex items-center gap-3 font-bold"><i class="fa-brands fa-tiktok text-xl"></i> TikTok</a>
-                <a id="side-wa" href="#" target="_blank" class="flex items-center gap-3 font-bold text-green-600"><i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp</a>
+                <a id="side-wa" href="#" target="_blank" class="flex items-center gap-3 font-bold text-green-600"><i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp Support</a>
             </div>
         </div>
     </div>
@@ -101,20 +105,20 @@
                 </div>
                 <input id="bld" placeholder="Building/Floor/Apt" class="w-full p-3 bg-white rounded-xl outline-none text-sm">
                 <input id="ph" type="tel" placeholder="WhatsApp Number" class="w-full p-3 bg-white rounded-xl outline-none text-sm">
-                <select id="pay" class="w-full p-3 bg-white rounded-xl font-bold">
+                <select id="pay" class="w-full p-3 bg-white rounded-xl font-bold border-0">
                     <option value="Cash">💵 Cash on Delivery</option>
                     <option value="Whish">📲 Whish Pay</option>
                 </select>
             </div>
             <div class="flex justify-between font-black text-xl px-2"><span>Total:</span><span id="total-val">$0</span></div>
-            <button onclick="checkout()" class="w-full bg-blue-600 text-white p-4 rounded-2xl font-black uppercase shadow-lg">Confirm Order</button>
+            <button onclick="checkout()" class="w-full bg-blue-600 text-white p-4 rounded-2xl font-black uppercase">Complete Order</button>
         </div>
     </div>
 
     <div id="adm-p" class="panel">
         <div class="panel-content">
-            <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h2 class="text-xl font-black text-red-600 italic uppercase">🔒 Admin Control</h2>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-black text-red-600 italic uppercase">🔒 Admin Vault</h2>
                 <button onclick="toggle('adm-p')" class="text-[10px] font-black underline">CLOSE</button>
             </div>
             <div class="grid grid-cols-2 gap-2 mb-6">
@@ -122,10 +126,10 @@
                 <input id="cfg-fee" placeholder="Shipping Fee" class="p-2 border rounded-lg text-xs">
                 <input id="cfg-ig" placeholder="Instagram URL" class="p-2 border rounded-lg text-xs col-span-2">
                 <input id="cfg-tk" placeholder="TikTok URL" class="p-2 border rounded-lg text-xs col-span-2">
-                <button onclick="saveCfg()" class="col-span-2 bg-black text-white p-2 rounded-lg text-[10px] font-bold uppercase">Update Config</button>
+                <button onclick="saveCfg()" class="col-span-2 bg-black text-white p-2 rounded-lg text-[10px] font-bold">SAVE CONFIG</button>
             </div>
-            <div class="space-y-2 border-b pb-6 mb-6 bg-gray-50 p-4 rounded-2xl">
-                <input id="n-name" placeholder="Item Name" class="w-full p-3 rounded-xl border">
+            <div class="bg-gray-100 p-4 rounded-3xl mb-6 space-y-2">
+                <input id="n-name" placeholder="Product Name" class="w-full p-3 rounded-xl border">
                 <div class="grid grid-cols-2 gap-2">
                     <input id="n-price" type="number" placeholder="Price $" class="p-3 rounded-xl border">
                     <select id="n-gen" class="p-3 rounded-xl border font-bold"><option value="men">Men</option><option value="women">Women</option></select>
@@ -134,11 +138,11 @@
                     <option value="shoes">Shoes</option><option value="clothes">Clothing</option><option value="pants">Pants</option><option value="access">Accessories</option><option value="perfume">Perfumes</option>
                 </select>
                 <input id="n-img" placeholder="Image URL" class="w-full p-3 rounded-xl border">
-                <input id="n-sizes" placeholder="Sizes (e.g. 38,39,40)" class="w-full p-3 rounded-xl border">
-                <button onclick="addProd()" class="w-full bg-green-600 text-white p-3 rounded-xl font-black uppercase">Publish Item</button>
+                <input id="n-sizes" placeholder="Available Sizes (38,39,40...)" class="w-full p-3 rounded-xl border">
+                <button onclick="addProd()" class="w-full bg-green-600 text-white p-3 rounded-xl font-black uppercase">Publish</button>
             </div>
             <div id="admin-inventory" class="h-40 overflow-y-auto mb-4 border-b"></div>
-            <h3 class="font-black italic uppercase mb-2">Order Log</h3>
+            <h3 class="font-black italic uppercase mb-2">Orders & Search</h3>
             <input id="log-search" oninput="runLogSearch()" placeholder="Search ID, Phone or City..." class="w-full p-3 bg-gray-100 rounded-xl mb-4 text-xs">
             <div id="log" class="space-y-3 pb-20"></div>
         </div>
@@ -185,12 +189,12 @@
             document.getElementById('btn-men').className = g === 'men' ? 'flex-1 py-3 rounded-full font-black border-2 border-black bg-black text-white' : 'flex-1 py-3 rounded-full font-black border-2 border-black text-black';
             document.getElementById('btn-women').className = g === 'women' ? 'flex-1 py-3 rounded-full font-black border-2 border-black bg-black text-white' : 'flex-1 py-3 rounded-full font-black border-2 border-black text-black';
             document.getElementById('menu-title').innerText = g.toUpperCase() + "'S MENU";
-            renderStore(); updateMenuCategories();
+            document.getElementById('search-head').innerText = `Searching ${g.charAt(0).toUpperCase() + g.slice(1)}'s...`;
+            renderStore(); updateMenuCategories(); runSearch();
         };
 
         function renderStore() {
-            const container = document.getElementById('store-content');
-            container.innerHTML = '';
+            const container = document.getElementById('store-content'); container.innerHTML = '';
             Object.keys(cats).forEach(ck => {
                 const items = products.filter(p => p.gen === curGen && p.cat === ck);
                 if(items.length === 0) return;
@@ -226,7 +230,7 @@
                 <img src="${p.img}" class="w-full h-72 object-cover rounded-3xl mb-4">
                 <h2 class="text-2xl font-black uppercase italic">${p.name}</h2>
                 <p class="text-blue-600 font-black text-xl mb-6">$${p.price}</p>
-                <p class="text-[10px] font-black uppercase text-gray-400 mb-2">Available Sizes</p>
+                <p class="text-[10px] font-black uppercase text-gray-400 mb-2">Select Size</p>
                 <div class="flex flex-wrap gap-2 mb-6">
                     ${sizeList.map(s => `<button onclick="setS(this, '${s}')" class="size-btn border-2 border-gray-100 rounded-xl px-4 py-2 text-xs font-black">${s}</button>`).join('')}
                 </div>
@@ -255,7 +259,8 @@
 
         window.runSearch = () => {
             const v = document.getElementById('search-in').value.toLowerCase();
-            const f = products.filter(p => p.name.toLowerCase().includes(v));
+            // FILTER BY GENDER AND TEXT
+            const f = products.filter(p => p.gen === curGen && p.name.toLowerCase().includes(v));
             document.getElementById('search-results').innerHTML = f.map(p => drawCard(p)).join('');
         };
 
@@ -282,14 +287,14 @@
         window.checkout = () => {
             const ph = document.getElementById('ph').value; const city = document.getElementById('city').value;
             const dist = document.getElementById('dist').value; const bld = document.getElementById('bld').value;
-            if(!ph || !city || cart.length === 0) return alert("Fill form details!");
+            if(!ph || !city || cart.length === 0) return alert("Please fill city & phone!");
             const d = new Date();
             const oid = "SNK-" + (d.getMonth()+1) + d.getDate() + d.getHours() + d.getMinutes() + "-" + Math.random().toString(36).substring(2, 5).toUpperCase();
             const order = { oid, ph, city, dist, bld, pay: document.getElementById('pay').value, total: document.getElementById('total-val').innerText, items: cart.map(i => `${i.q}x ${i.name} (S: ${i.size})`).join(", "), date: d.toLocaleString() };
             set(push(ref(db, 'sneaks_orders')), order).then(() => {
-                const msg = `ORDER: ${oid}\nTOTAL: ${order.total}\nADDRESS: ${order.city}, ${order.dist}, ${order.bld}\nITEMS: ${order.items}`;
+                const msg = `ORDER ID: ${oid}\nTOTAL: ${order.total}\nADDRESS: ${order.city}, ${order.dist}, ${order.bld}\nITEMS: ${order.items}`;
                 if(order.pay === 'Whish') window.location.href = `https://api.whatsapp.com/send?phone=${cfg.wa.replace(/\D/g, '')}&text=${encodeURIComponent(msg)}`;
-                else alert("Order Placed! ID: " + oid);
+                else alert("Order Confirmed! ID: " + oid);
                 cart = []; updateCart(); toggle('cart-p');
             });
         };
@@ -303,10 +308,10 @@
             }
         };
 
-        window.saveCfg = () => set(ref(db, 'sneaks_cfg'), { wa: document.getElementById('cfg-wa').value, fee: document.getElementById('cfg-fee').value, ig: document.getElementById('cfg-ig').value, tk: document.getElementById('cfg-tk').value }).then(() => alert("Saved!"));
+        window.saveCfg = () => set(ref(db, 'sneaks_cfg'), { wa: document.getElementById('cfg-wa').value, fee: document.getElementById('cfg-fee').value, ig: document.getElementById('cfg-ig').value, tk: document.getElementById('cfg-tk').value }).then(() => alert("Settings Updated!"));
         window.addProd = () => {
             const p = { name: document.getElementById('n-name').value, price: document.getElementById('n-price').value, gen: document.getElementById('n-gen').value, cat: document.getElementById('n-cat').value, img: document.getElementById('n-img').value, sizes: document.getElementById('n-sizes').value, status: 'available' };
-            set(push(ref(db, 'sneaks_items')), p).then(() => alert("Added!"));
+            set(push(ref(db, 'sneaks_items')), p).then(() => alert("Item Published!"));
         };
 
         window.runLogSearch = () => {
@@ -320,7 +325,7 @@
         }
 
         window.updateStatus = (k, v) => update(ref(db, 'sneaks_items/' + k), { status: v });
-        window.delItem = (k) => { if(confirm("Delete?")) remove(ref(db, 'sneaks_items/' + k)); };
+        window.delItem = (k) => { if(confirm("Delete item forever?")) remove(ref(db, 'sneaks_items/' + k)); };
 
         function drawLog(data) {
             document.getElementById('log').innerHTML = data.map(o => `
